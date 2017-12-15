@@ -1,0 +1,20 @@
+<apex:page controller="Wizard_Demo">
+  <apex:form >
+  <apex:pageblock title="Enter Contact Details" >
+      <apex:pageBlockButtons >
+          <apex:commandButton value="Previous Page" action="{!goto_Page1_Wizard_Account}"/> 
+          <apex:commandButton value="Next Page" action="{!goto_Page2_Wizard_Opportunity}"/> 
+      </apex:pageBlockButtons>
+       <apex:pageblockSection columns="1">
+      <apex:inputfield value="{!c.FirstName}"/>
+      <apex:inputfield value="{!c.LastName}"/>
+      <apex:inputfield value="{!c.Phone}"/>
+      <apex:inputfield value="{!c.Fax}"/>
+      </apex:pageblockSection>
+     
+      
+      
+  </apex:pageblock>
+  </apex:form>
+  
+</apex:page>

@@ -1,0 +1,23 @@
+<apex:page controller="Outputpanel_Apex">
+<apex:form >
+<apex:pageBlock >
+<apex:pageBlockSection id="search">
+
+<apex:outputPanel id="thePanelWrapper1">
+    <apex:outputPanel id="panel1" rendered="{!rend1}" layout="block">
+        <apex:commandLink action="{!commandLinkAction}" value="show second"  reRender="thePanelWrapper2" />
+    </apex:outputPanel>
+</apex:outputPanel>
+
+<apex:outputPanel id="thePanelWrapper2">
+    <apex:outputPanel id="panel2" rendered="{!rend}" layout="block">
+        <apex:commandLink action="{!commandLinkAction1}" value="show first"  reRender="thePanelWrapper1" />
+    </apex:outputPanel>
+</apex:outputPanel>
+
+
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:form>
+
+</apex:page>

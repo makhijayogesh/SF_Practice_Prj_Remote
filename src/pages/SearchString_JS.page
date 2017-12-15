@@ -1,0 +1,43 @@
+<apex:page controller="CustomerSearchController" tabStyle="Contact" id="SearchString_JS">
+<apex:includeScript value="{!$Resource.Jquery}"/>
+    
+<apex:form id="frm">
+<apex:actionFunction name="dosearchJS" action="{!doSearch}"/>
+<apex:pageBlock title="Criteria" id="crt_pb">
+    <apex:pageBlockSection id="crt_pbs">
+        <apex:outputLabel value="Enter Contact Name"></apex:outputLabel>
+        <apex:inputText id="crt_Str" value="{!searchStr}"/>
+        <apex:commandButton value="Go" onClick="runSearch(); return false;" />
+        <apex:outputText style="font-style:italic">Enter at least two characters</apex:outputText>
+    </apex:pageBlockSection>
+     </apex:pageBlock>
+        <apex:pageBlock title="Output" id="display" >
+            <apex:pageBlockTable value="{!results}" var="cont" rendered="{!resultsAvailable}">
+                <apex:column value="{!cont.id}"/> 
+                 <apex:column value="{!cont.Firstname}"/> 
+                 <apex:column value="{!cont.Lastname}"/> 
+                 <apex:column value="{!cont.Email}"/> 
+                 <apex:column value="{!cont.Phone}"/> 
+                             
+            </apex:pageBlockTable>
+        <apex:outputPanel rendered="{!NOT(resultsAvailable)}"></apex:outputPanel>
+        </apex:pageBlock>
+  </apex:form>  
+<body>
+    
+    
+    <script type="text/javascript">
+       
+     function runSearch()
+     {
+        var str=document.getElementById('{!$Component.frm.crt_pb.crt_pbs.crt_Str}').value;
+        dosearchJS();
+     }
+     
+   
+            
+   </script>
+    
+  
+</body>
+ </apex:page>

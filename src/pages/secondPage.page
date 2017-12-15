@@ -1,0 +1,3 @@
+<apex:page id="secondPage" >
+  <h1>This text is from SecondPage</h1>
+</apex:page>

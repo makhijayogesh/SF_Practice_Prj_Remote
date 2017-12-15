@@ -1,0 +1,17 @@
+<apex:page controller="exampleCon">
+    
+            
+    <p><apex:outputText value="Clicked? {!state}" id="showstate" /></p> 
+            
+    <!-- Add the onclick event listener to a panel. When clicked, the panel triggers
+    the methodOneInJavascript actionFunction with a param -->
+    <apex:outputPanel onclick="methodOneInJavascript('Yes!')" styleClass="btn"> 
+        Click Me 
+    </apex:outputPanel>
+    <apex:form >
+
+    <apex:actionFunction action="{!methodOne}" name="methodOneInJavascript" rerender="showstate">
+        <apex:param name="firstParam" assignTo="{!state}" value="" />
+    </apex:actionFunction>
+    </apex:form>
+</apex:page>

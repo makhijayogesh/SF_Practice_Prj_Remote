@@ -1,0 +1,31 @@
+<apex:page Controller="SOQL_Using_Relationship_CLS" >
+ <apex:form >
+      <apex:pageblock >
+
+          <apex:outputPanel >
+              <apex:commandButton action="{!display_Employees}" Value="Display Employees"/>
+              <apex:commandButton action="{!display_Departments}" Value="Display Department"/>
+          </apex:outputPanel>
+
+          <apex:pageblockSection id="pgbSection1ID" rendered="{!pgbSection1}">
+                  <apex:pageblockTable value="{!empl_Records}" var="EmplRec"  > 
+                      <apex:column value="{!EmplRec.Name}"/>
+                      <apex:column value="{!EmplRec.Department_Master__c}"/>
+                      <apex:column value="{!EmplRec.Department_Master__r.name}"/>
+                  </apex:pageblockTable>
+          </apex:pageblockSection>
+           <apex:pageblockSection id="pgbSection2ID" rendered="{!pgbSection2}">
+                  <apex:pageblockTable value="{!dept_Records}" var="deptRec"> 
+                      <apex:column value="{!deptRec.Name}"/>
+                       
+                  </apex:pageblockTable>
+                  
+                  <apex:pageblockTable value="{!empl_Records2}" var="emp"> 
+                      <apex:column value="{!emp.Id}"/> 
+                      <apex:column value="{!emp.Name}"/> 
+                      
+                  </apex:pageblockTable>
+          </apex:pageblockSection>
+      </apex:pageblock>
+  </apex:form> 
+</apex:page>

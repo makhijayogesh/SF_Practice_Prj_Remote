@@ -1,0 +1,21 @@
+<apex:page standardController="Account" showHeader="false" sidebar="false" >
+   <apex:form >
+     <apex:pageBlock title="Account Related Information" >
+       <apex:pageBlockSection title="Account Detail" >
+                 <apex:inputField value="{!Account.Name}" />
+       </apex:pageBlockSection>
+       <apex:pageBlockSection >
+                 <apex:inputField value="{!Account.site}"/>
+                 <apex:inputField value="{!Account.SLAExpirationDate__c}" showDatePicker="true" />
+       </apex:pageBlockSection>
+       <apex:pageBlockSection title="Associated Contacts">
+           <apex:pageblockTable value="{!Account.Contacts}" var="cont">
+
+            <apex:column value="{!cont.name}"/>
+            <apex:column value="{!cont.Birthdate}"/>
+           
+           </apex:pageblockTable>
+       </apex:pageBlockSection>
+     </apex:pageBlock>
+  </apex:form>
+</apex:page>

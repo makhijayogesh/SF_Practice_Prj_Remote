@@ -1,0 +1,14 @@
+<apex:page controller="Test" >
+     <script>
+         
+         function sayHello()
+         {
+             alert('Hello');
+         }
+         
+     
+     </script>
+    <apex:form id="Abc" > 
+     <apex:commandButton onclick="sayHello()" value="Click Me"/>
+    </apex:form> 
+</apex:page>

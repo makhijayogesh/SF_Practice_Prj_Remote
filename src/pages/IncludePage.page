@@ -1,0 +1,5 @@
+<apex:page id="IncludePage">
+  <h1>This text is from IncludePage</h1><br></br>
+  <apex:include pageName="AccountRemoter_VF_JavaSc_Remoting"/>
+  <apex:include pageName="SearchString_JS"/>
+</apex:page>

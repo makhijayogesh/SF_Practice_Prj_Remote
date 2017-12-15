@@ -1,0 +1,30 @@
+<apex:page showheader="false">
+
+    <apex:stylesheet value="{!$Resource.HTML_Practice}"/>
+    <apex:image url="{!$Resource.YogeshDP}" width="100" height="100" />
+
+<body>
+   
+  <ul>
+      <li>Yogesh</li>
+      <li>Rajesh</li>
+      <li>Ramesh</li>
+  </ul>
+  <Table align="center" border="1">
+   <tr>
+     <th>Account No</th>
+     <th colspan="1"><h2>Name</h2></th>
+     <th>City</th>
+  
+   </tr>
+      <tr>
+     <td>101</td>
+     <td>Yogesh</td>
+     <td>Gwalior</td>
+  
+   </tr>
+
+  </table>
+  </body>
+ 
+</apex:page>

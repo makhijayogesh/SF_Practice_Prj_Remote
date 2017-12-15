@@ -1,0 +1,20 @@
+<apex:page controller="sample">
+    
+    <apex:form >
+    
+    <apex:pageBlock >
+        <apex:commandButton value="A Section" action="{!callA}"/>
+        <apex:commandButton value="B Section" action="{!callB}"/>
+    </apex:pageBlock>
+    
+    <apex:pageBlock rendered="{!Abool}">
+       <apex:outputText value="This is A section"/>
+    </apex:pageBlock>    
+    
+    <apex:pageBlock rendered="{!Bbool}">
+       <apex:outputText value="This is B section"/>
+    </apex:pageBlock>      
+
+    </apex:form>
+
+</apex:page>

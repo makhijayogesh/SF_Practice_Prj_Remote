@@ -1,0 +1,59 @@
+<apex:page Controller="Account_Search_Wrapper_Example_Cls"  >
+    
+    <script>
+       function AccountFetch(accountIdNumber) {
+            alert('Hi-->'+accountIdNumber);
+            sendingAccountIDtoActionMethod(accountIdNumber);
+        }
+        
+        
+    </script>
+    
+    
+   <apex:form id="form1" >
+       
+       <apex:actionFunction id="acFun1" name="sendingAccountIDtoActionMethod" action="{!getContactRecords}" reRender="ContactDetailID"   >
+           <apex:param name="acccountIDValue" assignTo="{!accountIDStr}" value=""  />
+       </apex:actionFunction>
+   <apex:pageBlock >
+   
+    <apex:pageBlockSection title="Search Account" columns="1" >
+         <apex:Inputtext label="Enter Account Name" value="{!AccountName}"  />  
+         
+
+         <apex:outputPanel >
+             <apex:commandbutton action="{!searchAccount}" value="Search Account"    />
+            
+
+            <!-- <apex:outputText value="{!message}" style="font-size:100%;color:Red" /> -->
+            
+         </apex:outputPanel>
+             <apex:pageMessages />
+     </apex:pageblockSection> 
+            
+     <apex:pageBlockSection rendered="true" >
+                  <apex:pageBlockTable value="{!Acid}" var="ActRecord"  > 
+                  <apex:column headerValue="Account Name" width="400">
+                        <apex:commandLink reRender="ContactDetailID" >
+                                {!ActRecord.name} 
+                        </apex:commandLink>
+                   </apex:column> 
+                  <apex:column headerValue="Site" value="{!ActRecord.site}"/>
+                  <apex:column headerValue="Phone" value="{!ActRecord.phone}"/> 
+                  <apex:column headerValue="Industry" value="{!ActRecord.Industry}"/> 
+             
+                <apex:column headerValue="View Contact"  >
+                 
+                    <apex:image url="{!$Resource.Contact_image}"  width="20" height="20" onclick="AccountFetch('{!ActRecord.id}');"   />
+                        
+                </apex:column> 
+                
+              </apex:pageBlockTable>
+      </apex:pageBlockSection>    
+            
+          
+       
+          
+   </apex:pageBlock>
+    </apex:form>
+</apex:page>

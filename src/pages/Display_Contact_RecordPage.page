@@ -1,0 +1,21 @@
+<apex:page standardController="contact" >
+    <apex:form >
+    <apex:pageBlock title="Quick Edit: {!contact.name}" mode="InlineEdit" >
+        <apex:pageBlockButtons >
+            <apex:commandButton action="{!Save}" value="Save" />
+        </apex:pageBlockButtons>
+        <apex:pageBlockSection columns="3" >
+           <!-- <apex:inputField value="{!contact.Phone}" />
+            <apex:inputField value="{!contact.MobilePhone}" label="Mobile#"/>
+            <apex:inputField value="{!contact.Email}"/> -->
+           
+            <apex:outputField value="{!contact.Phone}" />
+            <apex:outputField value="{!contact.MobilePhone}" label="Mobile#"/>
+            <apex:outputField value="{!contact.Email}"/>  
+           
+            
+        </apex:pageBlockSection>
+    </apex:pageBlock>    
+
+   </apex:form>
+</apex:page>

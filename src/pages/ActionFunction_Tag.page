@@ -1,0 +1,31 @@
+<apex:page controller="Controller"  >
+     <style>
+        .myFormStyle {
+            background-color: cyan;
+        }
+         .mySelectList{
+         	 
+         }
+         
+    </style>
+	<apex:form styleClass="myFormStyle">
+    <apex:actionFunction action="{!createFruitList}" 
+                         name="generateFruits" reRender="selFruits" />
+        <br/>
+        Select the Alphabet :
+        <apex:selectList id="SelAlphabets" value="{!SelectedAlphabet}" 
+                         size="1" onchange="generateFruits()" styleClass="mySelectList">
+        	<apex:selectOptions value="{!Alphabets}">
+        	</apex:selectOptions>
+               
+        </apex:selectList>
+        
+        <br/>
+        Select the Fruit:
+        <apex:selectList id="selFruits" size="1">
+         <apex:selectOptions value="{!Fruits}">
+         </apex:selectOptions>
+        </apex:selectList>
+    </apex:form>
+    
+</apex:page>

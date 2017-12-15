@@ -1,0 +1,38 @@
+<apex:page controller="PrimitiveType" showHeader="false">
+     <apex:form >
+   <!-- <apex:pageBlock title="Primitive Data type Fetch">
+        <apex:pageBlockSection>
+            {!s} <br/>
+       </apex:pageBlockSection>
+     </apex:pageBlock>
+        
+    <apex:pageBlock title="SObject Data type fetch- Single Account">
+        <apex:pageBlockSection>
+        {!a.name} <br/>
+        {!a.site}
+         </apex:pageBlockSection>
+     </apex:pageBlock> -->
+    <apex:pageBlock title="List of Accounts - Based on Criteria ">
+        
+        <apex:tabPanel switchType="ajax">
+            <apex:tab Label="Account List With Type - Direct"  >
+          <apex:pageBlockTable value="{!actDirect}" var="x" >
+            <apex:column value="{!x.name}" />  
+              <apex:column value="{!x.site}"/>  
+              <apex:column value="{!x.phone}" width="2000" />  
+              <apex:column value="{!x.type}" width="2000"/>  
+          </apex:pageBlockTable>
+                </apex:tab>
+            <apex:tab Label="Account List With Type - Channel">
+         <apex:pageBlockTable value="{!actChannel}" var="y" >
+            <apex:column value="{!y.name}" />  
+              <apex:column value="{!y.site}"/>  
+              <apex:column value="{!y.phone}" width="2000" />  
+              <apex:column value="{!y.type}" width="2000"/>  
+          </apex:pageBlockTable> 
+                </apex:tab>
+        </apex:tabPanel>
+        </apex:pageBlock>
+        
+   </apex:form>
+</apex:page>

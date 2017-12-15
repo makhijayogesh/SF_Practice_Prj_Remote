@@ -1,0 +1,25 @@
+<apex:page controller="AccountCustomControllerCLS" >
+  <apex:form >
+      <Apex:pageBlock >
+                             <apex:pageBlockSection title="Account Detail">
+                                    <apex:outputField value="{!ac.name}"/>
+                                    <apex:outputField value="{!ac.site}"/>
+                                    <apex:outputField value="{!ac.BillingCity}"/>
+                                    <apex:outputField value="{!ac.BillingState}"/>
+                             </apex:pageBlockSection>
+                             <apex:pageBlockSection title="Account Input Section">
+                                     <apex:InputField value="{!ac.BillingState}" />
+                            </apex:pageBlockSection>
+                    <apex:commandButton value="Check Updated Account" action="{!displayUpdateAccDetails}">
+                  </apex:commandButton>
+            <apex:pageBlockSection title="Updated Account" id="UpdateAccSec" rendered="{!displayUpdateAccSec}" >
+                <apex:outputField value="{!ac.name}"/>
+                <apex:outputField value="{!ac.site}"/>
+                <apex:outputField value="{!ac.BillingCity}"/>
+                <apex:outputField value="{!ac.BillingState}"/>
+                <apex:commandButton value="Save Changes" action="{!Save}"/>
+         </apex:pageBlockSection>
+     </Apex:pageBlock>
+     
+  </apex:form>
+</apex:page>

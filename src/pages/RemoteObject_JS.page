@@ -1,0 +1,54 @@
+<apex:page showHeader="false" standardStylesheets="false">
+ 
+ Title (Mr./Mrs./Ms. ) <input type="text" id="inputTitle"></input><br></br>
+ First Name <input type="text" id="inputFirstName"></input><br></br>
+ Last Name <input type="text" id="inputLastName"></input><br></br>
+ Phone Number <input type="text" id="inputPhone"></input><br></br>
+ Email <input type="text" id="inputEmail"></input><br></br>
+ <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<Input type="Button" Onclick="Createcontact();" value="Submit"></input>
+ 
+<apex:remoteObjects jsNamespace="RemoteObjectModel">
+    <apex:remoteObjectModel name="Contact">
+    </apex:remoteObjectModel>
+</apex:remoteObjects>
+
+<Script type="text/javascript">
+
+//Function to Create Contact record
+function Createcontact(){
+
+var createCon = new RemoteObjectModel.contact({
+    FirstName : $$jQuery('#inputFirstName').val(),
+           LastName : $$jQuery('#inputLastName').val(),
+          Title : $$jQuery('#inputTitle').val(),
+          Phone : $$jQuery('#inputPhone').val(),
+         Email : $$jQuery('#inputEmail').val()
+      });
+  createCon.create();
+
+  
+/*  var createCon = (FirstName : #inputFirstName,
+           LastName : #inputLastName,
+          Title : #inputTitle,
+          Phone : #inputPhone,
+         Email : #inputEmail
+      ); */
+   /* var createCon = (FirstName : "abc",
+           LastName : "abc",
+          Title : "abc",
+          Phone : "abc",
+         Email : "abc"
+      );
+
+  RemoteObjectModel.create(createCon); */
+  var ct = new RemoteObjectModel.Contact({ 
+    FirstName: "Aldo",
+    LastName: "Michaels", 
+    Phone: "(415) 555-1212"
+});
+  RemoteObjectModel.create(ct);
+} 
+
+</script>
+</apex:page>

@@ -1,0 +1,35 @@
+<apex:page controller="ActionFunctionSampleCls" >
+<script>
+         
+         function sayHello()
+         {
+                        
+             var apexInput=document.getElementById('{!$Component.frm2.pgb1.txtbox}').value;
+              alert(apexInput);
+             CallActionFunction(apexInput);
+         }
+         
+     
+     </script>
+    <apex:form id="frm1" > 
+                <apex:actionFunction action="{!CallController}" name="CallActionFunction" reRender="showname">
+                        <apex:param name="NameValue" value="" assignTo="{!NameParameter}"/>
+                </apex:actionfunction>
+                    <apex:pageblock >
+                        <apex:pageblockSection > This is form 1 </apex:pageblockSection>
+                        
+                    </apex:pageblock>
+
+           </apex:form>      
+    <apex:form id="frm2" > 
+    <apex:pageBlock id="pgb1" >
+    <apex:pageblockSection > This is form 2 </apex:pageblockSection>
+
+         Enter Name <apex:inputText id="txtbox" />
+          <apex:commandButton onclick="sayHello();" value="Click Me" reRender="frm2" />
+       <apex:outputtext value="Name- {!val}" id="showname" /> 
+       
+    </apex:pageBlock> 
+  </apex:form>   
+             
+</apex:page>

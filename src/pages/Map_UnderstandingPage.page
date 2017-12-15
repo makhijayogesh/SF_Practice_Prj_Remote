@@ -1,0 +1,17 @@
+<apex:page controller="Map_Understandingcls" >
+  <apex:form >
+      <apex:pageBlock title="Account Records" >
+          <apex:pageblockButtons >
+              <apex:commandButton action="{!DisplayAccountRecords}" value="Display"/>
+          </apex:pageblockButtons>
+
+          <apex:pageblockTable value="{!maplistAccRecord}" var="mapRecords">
+                <apex:column value="{!mapRecords.name}"/>
+                <apex:column value="{!mapRecords.phone}"/> 
+                <apex:column value="{!mapRecords.site}"/>  
+          </apex:pageblockTable>
+
+      
+      </apex:pageBlock>
+  </apex:form>  
+</apex:page>

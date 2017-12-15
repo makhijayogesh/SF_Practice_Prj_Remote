@@ -1,0 +1,11 @@
+<apex:page standardController="contact" tabStyle="Contact">
+<apex:form >
+<apex:pageBlock >
+    <apex:pageblockSection >
+            <apex:inputField value="{!contact.firstname}"/> 
+            <apex:inputField value="{!contact.email}"/> 
+   
+    </apex:pageblockSection>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

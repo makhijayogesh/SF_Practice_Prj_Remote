@@ -1,0 +1,20 @@
+<apex:page controller="VFDynamicComponent_V1_Class" >
+ <apex:form >
+     <apex:pageblock >
+         <apex:commandButton value="Add Account" action="{!addAccountSection}" immediate="true" />
+         <apex:commandButton value="Remove Account" action="{!removeAccountSection}" immediate="true"/>
+         <apex:repeat value="{!listWrapper}" var="individualWrapper">
+             <apex:pageBlockSection title="Account Detail" columns="4" id="pgSectionAccount" >
+                     <apex:inputField value="{!individualWrapper.accountRecord.Name}"/>
+                     <apex:inputField value="{!individualWrapper.accountRecord.site}"/>
+                     <apex:commandButton value="Save" action="{!SaveAccount}">
+                        // <apex:param name="AccRec" value="{!individualWrapper.accountRecord.Id}" assignTo="{!AccRec}"/>
+                     </apex:commandButton>
+                     <apex:commandButton value="Remove" reRender="pgSectionAccount"/>
+             </apex:pageBlockSection>
+    
+         </apex:repeat>
+         
+     </apex:pageblock>
+ </apex:form>
+</apex:page>

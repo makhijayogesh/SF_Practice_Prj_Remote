@@ -1,0 +1,153 @@
+<apex:page controller="Account_Search_Wrapper_TabularFormCLS" sidebar="false">
+      
+      <script>
+           /* function saveAll(){
+                var chkValue=document.getElementById("{!$Component.form1.pgBlock.pgbSec.pgbTable.saveAll_chkBox}").checked;
+                selectAllCheckBox_AcFun(chkValue);
+            } */
+            
+                       
+         /* function cleanListJS(){
+              alert('In on change function');
+              actionFunction_cleanList();
+          } */
+          
+          function saveAll2(abc){
+                selectAllCheckBox_AcFun(abc);
+          }
+            
+          function AccountDetail_JS_Fun(SelectedAccountID){
+              alert('Account Id '+SelectedAccountID);
+              
+          }
+          
+          
+          function passDataOnSelect(checkboxValue,abc) {
+          
+           //   alert('In on Individual Select Check Box '+checkboxValue );
+            //  alert('Account Data : ' + abc);
+          }
+          
+           function passDataOnSelect1(checkboxValue) {
+          
+             // alert('In on Individual Select Check Box '+checkboxValue );
+              //alert('Account Data : ' + abc);
+          }
+          
+          function deSelectAllCheckBox(checkboxValue)
+          {
+               deSelectAllCheckBox_AcFun(checkboxValue);
+          }
+          
+          function AccountFetch(accountIdNumber) {
+                   sendingAccountIDtoActionMethod(accountIdNumber);
+        }
+        
+          
+     </script>
+     
+     <style type="text/css">
+         .pgbHeaderStyle{
+             background-color: lightblue;
+             border: 1px solid black;
+             
+         }
+         .columnWidth{
+             text-align: left;
+         }
+         
+       .activeTab{background-color: lightGray; color:black; background-image:none;}
+       .inactiveTab{background-color: white; color:black;background-image:none;} 
+       .tab1{background-color: white; color:black;background-image:none;} 
+     </style>
+   <apex:form id="form1" >
+       
+          <apex:actionFunction id="acFun1" name="sendingAccountIDtoActionMethod" action="{!getContactRecords}" reRender="ContactDetailID" status="counterStatus" >
+               <apex:param name="acccountIDValue" assignTo="{!accountIDStr}" value=""  />
+          </apex:actionFunction>
+       
+          <apex:actionFunction name="actionFunction_cleanList" action="{!cleanList}" reRender="pgbSec">
+              
+          </apex:actionFunction>
+       
+          <apex:actionFunction name="selectAllCheckBox_AcFun" action="{!selectAllCheckBox}" reRender="pgbSec">
+              <apex:param name="chkValue" assignTo="{!chkValue}"  value=""/>
+          </apex:actionFunction>
+    
+            <apex:actionFunction name="deSelectAllCheckBox_AcFun" action="{!deSelectAll_fun}" reRender="pgbSec">
+              <apex:param name="checkboxValue" assignTo="{!deSelectAll_chkbox}"  value=""/>
+          </apex:actionFunction>
+          
+   <apex:tabPanel tabClass="activeTab" inactiveTabClass="inactiveTab" >
+      <apex:tab label="Account Search" styleClass="tab1" reRender="All_Account_Tab" >
+      
+       <apex:pageBlock >
+           <apex:pageBlockSection title="Search Account" columns="2" >
+         <apex:Inputtext label="Enter Account Name" value="{!AccountName}" onchange="cleanListJS()"  />  
+         
+         <apex:outputPanel >
+             <apex:commandbutton action="{!searchAccount}" value="Search Account"    />
+             <apex:commandbutton action="{!saveAccounts}" value="Save Accounts" rendered="{!saveAccounts_btn_flg}" />
+      
+         </apex:outputPanel>
+             <apex:pageMessages />
+     </apex:pageblockSection>
+       </apex:pageBlock>       
+      </apex:tab>
+      <apex:tab label="All Accounts" id="All_Account_Tab">
+      <apex:pageBlock mode="inlineEdit"  id="pgbSec" >
+       <!-- <apex:pageBlock mode="inlineEdit" id="pgBlock" id="pgbSec" > -->
+       <apex:pageBlockSection title="Account Records" columns="1" >
+                  <apex:pageblockTable value="{!listSearchResultWrapper}" var="wrapperRecord" id="pgbTable"   align="center" cellpadding="8" headerClass="pgbHeaderStyle" onrowDblClick="passDataOnSelect1(this.value);"  > 
+                  
+                  <apex:column headerValue="Select For Save"  >
+                      <apex:facet name="header">
+                          <apex:inputCheckbox title="Name" onclick="saveAll2(this.checked);" id="saveAll_chkBox" value="{!deSelectAll_chkbox_flag}" >
+                          </apex:inputCheckbox> 
+                         <!-- <input type="checkbox" onclick="saveAll()" id="saveAll_chkBox"></input> -->
+                      </apex:facet>
+                       
+                          <apex:inputCheckbox value="{!wrapperRecord.selectCheckBox1}" onclick="passDataOnSelect(this.checked,'{!wrapperRecord.accountRecord}'),deSelectAllCheckBox(this.checked)">
+                          </apex:inputCheckbox>
+                   </apex:column> 
+                   
+                  <apex:column headerValue="Account Name"   >
+                        <apex:commandLink onclick="AccountDetail_JS_Fun('{!wrapperRecord.accountRecord.Id}')">
+                                {!wrapperRecord.accountRecord.name} 
+                        </apex:commandLink>
+                   </apex:column> 
+                  <apex:column headerValue="Site" value="{!wrapperRecord.accountRecord.site}"  />
+                  <apex:column headerValue="Phone" value="{!wrapperRecord.accountRecord.phone}" styleClass="columnWidth"  /> 
+                  <apex:column headerValue="Industry" value="{!wrapperRecord.accountRecord.Industry}" ondblclick="passDataOnSelect(this.value,'{!wrapperRecord.accountRecord}');" /> 
+             
+                <apex:column headerValue="View Contact"  >
+                 
+                    <apex:image url="{!$Resource.Contact_image}"  width="20" height="20" onclick="AccountFetch('{!wrapperRecord.accountRecord.id}');"   />
+                        
+                </apex:column> 
+                
+              </apex:pageblockTable>
+          </apex:pageBlockSection>
+                 
+       </apex:pageBlock>
+         
+       <apex:pageblock >
+       <apex:pageBlocksection title="Contacts" id="ContactDetailID" columns="1"  >
+          
+             <apex:pageBlockTable value="{!listContactRecords }" var="contactRecord" rendered="{!pgbSectionContactDetailID_flag}" > 
+                 
+                  <apex:column headerValue="Site" value="{!contactRecord.firstname}"/>
+                  <apex:column headerValue="Phone" value="{!contactRecord.lastname}"/> 
+                 
+              </apex:pageBlockTable>
+              
+              <apex:pageMessages rendered="{ !enableContactMessage}" />
+                                
+         </apex:pageBlocksection>   
+                </apex:pageblock>
+                        </apex:tab>
+
+        </apex:tabPanel>
+   </apex:form>
+     
+</apex:page>

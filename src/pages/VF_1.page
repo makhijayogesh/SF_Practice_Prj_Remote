@@ -1,0 +1,16 @@
+<apex:page standardController="Account">
+   <apex:form >
+    <apex:pageblock >
+    <apex:pageblockButtons >
+        <apex:commandButton action="{!Save}" value="Save" />
+    </apex:pageblockButtons>
+    <apex:pageblockSection >
+    <apex:inputfield value="{!Account.Name}"  />
+   <apex:inputtext value="{!Account.Site}" />
+   <apex:inputtext value="{!Account.AnnualRevenue}" />
+   </apex:pageblockSection>
+    </apex:pageblock>
+   
+   </apex:form>
+
+</apex:page>

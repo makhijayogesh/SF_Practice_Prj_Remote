@@ -1,0 +1,26 @@
+<!-- This page is displaying logged in username -->
+<apex:page standardController="Account"  >
+
+  Welcome {!$User.FirstName}
+  
+    <style>
+        .activeTab{background-color: lightGray; color:black; background-image:none;}
+       .inactiveTab{background-color: white; color:black;background-image:none;} 
+       .tab1{background-color: white; color:black;background-image:none;} 
+    </style>
+
+    <apex:tabPanel tabClass="activeTab" inactiveTabClass="inactiveTab" >
+        <apex:tab label="Details" styleClass="tab1" >
+            <apex:detail relatedList="false" />
+        </apex:tab>
+        <apex:tab label="Contacts">
+            <apex:relatedList list="contacts" />
+        </apex:tab>
+        <apex:tab label="Opportunities">
+            <apex:relatedList list="Opportunities"/>
+        </apex:tab>
+        <apex:tab label="Notes and Attachements">
+            <apex:relatedList list="CombinedAttachments"/>
+        </apex:tab>
+      </apex:tabPanel>
+</apex:page>
